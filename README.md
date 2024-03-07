@@ -67,9 +67,15 @@ API service combines the LLM and RAG responses and sends the final answer to the
 Conclusion:
 This architectural plan ensures efficient, scalable, and reliable question-answering capabilities by leveraging LLMs, RAG, and a well-designed GoLang API service. The inclusion of caching, microservices, and proper deployment practices contributes to a robust and responsive system.
 
+
+
 ![Serice API Structure](https://github.com/Shiva936/Gen-AI/assets/55594849/adb0588c-a4a9-499f-a14b-9e80d3eb8efb)
+
+Service API Structure
+
+
 
 ![System Architecture](https://github.com/Shiva936/Gen-AI/assets/55594849/ff6e4d51-fb54-4450-8ab3-81717da57a40)
 
-
+System Service Structure
 
