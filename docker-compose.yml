@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  backend-server:
+    image: app/backend-server/backend-server
+    container_name: backendserver-service
+    build:
+      context: contextPath
+      dockerfile: app/backend-server/Dockerfile.app
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+    env_file:
+      - .env
+
+  generative-model:
+    image: app/generativemodel/generative-model
+    container_name: generativemodel-service
+    build:
+      context: contextPath
+      dockerfile: app/generative-model/Dockerfile.app
+    ports:
+      - "3001:3001"
+    networks:
+      - mynetwork
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    networks:
+      - mynetwork
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    container_name: kafka_container
+    networks:
+      - mynetwork
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+
+networks:
+  mynetwork:
+    driver: bridge

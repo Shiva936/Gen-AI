@@ -1,0 +1,5 @@
+{
+  "app_name": "api-server",
+  "log_level": "DEBUG",
+  "port": 3000
+}

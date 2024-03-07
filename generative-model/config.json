@@ -1,0 +1,5 @@
+{
+  "app_name": "generative-model",
+  "log_level": "DEBUG",
+  "port": 3002
+}

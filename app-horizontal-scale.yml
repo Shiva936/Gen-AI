@@ -1,0 +1,35 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-server-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-server-deployment
+  minReplicas: 1 # Adjust the minimum number of replicas as needed
+  maxReplicas: 10 # Adjust the maximum number of replicas as needed
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 50 # Adjust the CPU utilization target as needed
+
+---
+# To Be Done on Kafka Metrics based on consumer
+# apiVersion: autoscaling/v2beta2
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: kafka-hpa
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Service
+#     name: kafka-deployment
+#   minReplicas: 1 # Adjust the minimum number of replicas as needed
+#   maxReplicas: 10 # Adjust the maximum number of replicas as needed
+#   metrics:
+#     - type: Resource
+#       resource:
+#         name: cpu
+#         targetAverageUtilization: 50 # Adjust the CPU utilization target as needed
